@@ -1,0 +1,32 @@
+type Query {
+    users: [User],
+    user(id: ID!): User,
+    authUser: User,
+    note(id: ID!): Note,
+    login(username: String!, password: String!): AuthData!
+}
+
+type AuthData {
+    userID: ID!,
+    token: String!,
+    tokenExpiration: Int!
+}
+
+type User {
+    id: ID!,
+    username: String!,
+    notes: [Note]
+}
+
+type Note {
+    id: ID!,
+    user: User!,
+    title: String,
+    content: String
+}
+
+type Mutation {
+    createNote(title: String, content: String): Note,
+    updateNote(id: ID!, title: String, content: String): Note,
+    createUser(username: String!, password: String!): User,
+}
